@@ -8,9 +8,19 @@ public class Player : MonoBehaviour
     float m_curFireRate;
     bool m_isShooted;
 
+    public GameObject viewFinder;
+    GameObject m_viewFinderclone;
+
     private void Awake()
     {
         m_curFireRate = fireRate;
+    }
+    private void Start()
+    {
+        if (viewFinder)
+        {
+            m_viewFinderclone = Instantiate(viewFinder, Vector3.zero, Quaternion.identity);
+        }
     }
     private void Update()
     {
@@ -27,6 +37,10 @@ public class Player : MonoBehaviour
                 m_isShooted = false;
                 m_curFireRate = fireRate;
             }
+        }
+        if (m_viewFinderclone)
+        {
+            m_viewFinderclone.transform.position = new Vector3(mousePos.x, mousePos.y, 0f);
         }
     }
     void Shot(Vector3 mousePos)
