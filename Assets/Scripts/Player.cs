@@ -56,7 +56,11 @@ public class Player : MonoBehaviour
                 RaycastHit2D hit = hits[i];
                 if(hit.collider && (Vector3.Distance((Vector2)hit.collider.transform.position, (Vector2)mousePos) <= 0.4f))
                 {
-                    Debug.Log(hit.collider.name);
+                    Bird bird = hit.collider.GetComponent<Bird>();
+                    if (bird)
+                    {
+                        bird.Die();
+                    }
                 }
             }
         }
